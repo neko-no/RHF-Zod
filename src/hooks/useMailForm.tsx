@@ -11,22 +11,24 @@ export const useMailForm = () => {
       subject: "",
       email: "",
       content: "",
+      file: undefined,
     },
   });
 
   const onSubmit = useCallback(async (values: any) => {
-    const { username, email, subject, content } = values;
-    try {
-      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/send`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, subject, content }),
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    const { username, email, subject, content, file } = values;
+    console.log(username, email, subject, content, file);
+    // try {
+    //   await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/send`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ username, email, subject, content }),
+    //   });
+    // } catch (error) {
+    //   console.error(error);
+    // }
   }, []);
 
   return { form, onSubmit };

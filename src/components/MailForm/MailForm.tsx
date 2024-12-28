@@ -79,7 +79,7 @@ const MailForm = () => {
           <FormField
             control={form.control}
             name="file"
-            render={({ field }) => (
+            render={({ field: { value, onChange, ...fieldProps } }) => (
               <FormItem>
                 <FormLabel>添付画像</FormLabel>
                 <FormControl>
@@ -87,7 +87,10 @@ const MailForm = () => {
                     type="file"
                     accept="image/*"
                     placeholder="主題"
-                    {...field}
+                    onChange={(event) => {
+                      onChange(event.target.files);
+                    }}
+                    {...fieldProps}
                   />
                 </FormControl>
                 <FormMessage />
